@@ -3,6 +3,10 @@
 > *"Of course Alex took my direction to incorporate AI into our development process and built an entirely unnecessary app using all 32 leading AI apps on the market, none of which are cyber-approved or vetted. Of course he did."*  
 > — Jay, probably
 
+<p align="center">
+  <img src="gibberish-banner.png" alt="Gibberish Leaderboard Banner" />
+</p>
+
 > ⚠️ **Note:** This is the repo for a prototype app that emerged from a fun game played at the  
 > **2025 ITSD Application Development All Hands** meeting.  
 > While the gibberish is nonsense, the tech stack (and spirit) are very real.
