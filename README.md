@@ -46,7 +46,7 @@ It’s automatically synced with this GitHub repo and deployed via Vercel.
 
 Explore the source code here, or…
 
-👉 **[See the full v0 dev chat and fork it yourself](https://v0.dev/chat/projects/3hd1d7oi67j)**  
+👉 **[See the full v0 dev chat and fork it yourself](https://v0.dev/chat/gibberish-leaderboard-app-dEF9gR52aRO)**  
 I left all my prompts and weirdness in there.  
 Yes, including the part where I made it talk like a certificate. You’re welcome.
 
@@ -55,10 +55,10 @@ Yes, including the part where I made it talk like a certificate. You’re welcom
 ## 🚀 Deployment
 
 **Live app:**  
-[https://vercel.com/abellao-ornlgovs-projects/v0-gibberish-leaderboard-app](https://vercel.com/abellao-ornlgovs-projects/v0-gibberish-leaderboard-app)
+[https://vercel.com/abellao-ornlgovs-projects/v0-gibberish-leaderboard-app](https://gibberish.0rnl.dev/)
 
 **v0 build thread:**  
-[https://v0.dev/chat/projects/3hd1d7oi67j](https://v0.dev/chat/projects/3hd1d7oi67j)
+[https://v0.dev/chat/gibberish-leaderboard-app-dEF9gR52aRO](https://v0.dev/chat/gibberish-leaderboard-app-dEF9gR52aRO)
 
 ---
 
@@ -74,7 +74,7 @@ Yes, including the part where I made it talk like a certificate. You’re welcom
 
 ## ✨ Were you a winner and want to personalize your certificate?
 
-👑 Visit [https://0rnl.dev](https://0rnl.dev) to claim your moment in history  
+👑 Visit [https://gibberish.0rnl.dev](https://gibberish.0rnl.dev) to claim your moment in history  
 🏆 Submit your best gibberish phrases for leaderboard glory  
 🪄 Or fork this and remix it for your own org/team
 
