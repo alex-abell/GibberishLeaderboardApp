@@ -5,11 +5,14 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: "GIBSCORE - Gibberish Interpretation Battle Scoreboard",
-  description: "Where Enterprise Gibberish Becomes Crystal Clear",
+  title: "GIBSCORE - AppDev Gibberish Challenge Results",
+  description: "Where Enterprise IT Gibberish Becomes Crystal Clear",
     generator: 'v0.dev'
 }
 

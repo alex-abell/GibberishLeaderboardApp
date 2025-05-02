@@ -4,28 +4,36 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-import { Trophy, ArrowUpDown } from "lucide-react"
+import { Trophy, ArrowUpDown, Award } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import confetti from "canvas-confetti"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
+// Update the Team type to remove name and add cards
 type Team = {
   rank: number
   table: number
-  name: string
   score: number
 }
 
+// Replace the initialTeams array with the card count data
 const initialTeams: Team[] = [
-  { rank: 1, table: 16, name: "Acronym Avengers", score: 95 },
-  { rank: 2, table: 7, name: "Techno Babblers", score: 87 },
-  { rank: 3, table: 12, name: "Jargon Jugglers", score: 84 },
-  { rank: 4, table: 3, name: "Phrase Decoders", score: 79 },
-  { rank: 5, table: 9, name: "Word Wizards", score: 72 },
-  { rank: 6, table: 5, name: "Syntax Sleuths", score: 68 },
-  { rank: 7, table: 14, name: "Lingo Legends", score: 65 },
-  { rank: 8, table: 2, name: "Mumble Miners", score: 58 },
-  { rank: 9, table: 10, name: "Dialect Detectives", score: 52 },
-  { rank: 10, table: 8, name: "Vocab Voyagers", score: 45 },
+  { rank: 1, table: 16, score: 117 },
+  { rank: 2, table: 19, score: 83 },
+  { rank: 3, table: 1, score: 82 },
+  { rank: 4, table: 6, score: 80 },
+  { rank: 5, table: 2, score: 75 }, // Table 2/11
+  { rank: 6, table: 17, score: 73 },
+  { rank: 7, table: 4, score: 68 },
+  { rank: 8, table: 10, score: 68 },
+  { rank: 9, table: 9, score: 64 },
+  { rank: 10, table: 20, score: 62 },
+  { rank: 11, table: 18, score: 60 },
+  { rank: 12, table: 5, score: 57 },
+  { rank: 13, table: 13, score: 48 },
+  { rank: 14, table: 3, score: 40 },
+  { rank: 15, table: 14, score: 40 },
+  { rank: 16, table: 8, score: 37 },
 ]
 
 export function Leaderboard() {
@@ -61,117 +69,123 @@ export function Leaderboard() {
     localStorage.setItem("gibscore-teams", JSON.stringify(sortedTeams))
   }
 
+  // Update the handleClaimAward function to not use team name
   const handleClaimAward = (team: Team) => {
     // Trigger confetti animation
     confetti({
-      particleCount: 100,
+      particleCount: 150,
       spread: 70,
       origin: { y: 0.6 },
+      colors: ["#00481F", "#008037", "#E6F4EA"],
     })
 
     toast({
       title: "Congratulations!",
-      description: `${team.name} is claiming their award!`,
+      description: `Table ${team.table} is claiming their award!`,
     })
 
     // Navigate to certificate page
-    router.push(`/certificate?team=${encodeURIComponent(team.name)}&rank=${team.rank}`)
+    router.push(`/certificate?table=${team.table}&rank=${team.rank}`)
   }
 
   const getTrophyColor = (rank: number) => {
     switch (rank) {
       case 1:
-        return "text-[#d4af37]" // Gold
+        return "sc-trophy-gold"
       case 2:
-        return "text-[#C0C0C0]" // Silver
+        return "sc-trophy-silver"
       case 3:
-        return "text-[#CD7F32]" // Bronze
+        return "sc-trophy-bronze"
       default:
         return ""
     }
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col items-center justify-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-center">IncoHEARent Challenge Leaderboard</h2>
-        <p className="text-muted-foreground text-center mt-2">Ranking the best Gibberish Interpreters at ORNL</p>
-      </div>
-
-      <div className="rounded-md border shadow-sm overflow-hidden">
-        <Table>
-          <TableHeader>
-            <TableRow className="bg-muted/50">
-              <TableHead className="w-[80px]">
-                <Button
-                  variant="ghost"
-                  onClick={() => handleSort("rank")}
-                  className="font-medium flex items-center p-0 h-auto"
-                >
-                  Rank
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-              </TableHead>
-              <TableHead>
-                <Button
-                  variant="ghost"
-                  onClick={() => handleSort("table")}
-                  className="font-medium flex items-center p-0 h-auto"
-                >
-                  Table
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-              </TableHead>
-              <TableHead className="min-w-[150px]">
-                <Button
-                  variant="ghost"
-                  onClick={() => handleSort("name")}
-                  className="font-medium flex items-center p-0 h-auto"
-                >
-                  Team Name
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-              </TableHead>
-              <TableHead className="text-right">
-                <Button
-                  variant="ghost"
-                  onClick={() => handleSort("score")}
-                  className="font-medium flex items-center justify-end p-0 h-auto ml-auto"
-                >
-                  Score
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-              </TableHead>
-              <TableHead className="text-right">Action</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {teams.map((team) => (
-              <TableRow key={team.name} className={team.rank <= 3 ? "bg-muted/20" : ""}>
-                <TableCell className="font-medium flex items-center">
-                  {team.rank <= 3 && <Trophy className={`mr-2 h-5 w-5 ${getTrophyColor(team.rank)}`} />}
-                  {team.rank}
-                </TableCell>
-                <TableCell>{team.table}</TableCell>
-                <TableCell>{team.name}</TableCell>
-                <TableCell className="text-right">{team.score}</TableCell>
-                <TableCell className="text-right">
-                  {team.rank <= 3 && (
-                    <Button
-                      variant="default"
-                      size="sm"
-                      className="bg-[#00458b] hover:bg-[#003366]"
-                      onClick={() => handleClaimAward(team)}
-                    >
-                      Claim Award
-                    </Button>
-                  )}
-                </TableCell>
+    <Card className="sc-card">
+      <CardHeader className="text-center border-b border-gray-200 dark:border-gray-700 pb-6">
+        <CardTitle className="text-2xl md:text-3xl text-sc-primary dark:text-sc-light">
+          IncoHEARent Challenge Leaderboard
+        </CardTitle>
+        <CardDescription className="text-gray-600 dark:text-gray-400">
+          Ranking the best Gibberish Interpreters at ORNL
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="pt-6">
+        <div className="rounded-md border shadow-sm overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-sc-primary hover:bg-sc-primary/90">
+                <TableHead className="w-[80px] text-white font-medium">
+                  <Button
+                    variant="ghost"
+                    onClick={() => handleSort("rank")}
+                    className="font-medium flex items-center p-0 h-auto text-white hover:text-sc-light hover:bg-transparent"
+                  >
+                    Rank
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </TableHead>
+                <TableHead className="text-white font-medium">
+                  <Button
+                    variant="ghost"
+                    onClick={() => handleSort("table")}
+                    className="font-medium flex items-center p-0 h-auto text-white hover:text-sc-light hover:bg-transparent"
+                  >
+                    Table
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </TableHead>
+                <TableHead className="text-right text-white font-medium">
+                  <Button
+                    variant="ghost"
+                    onClick={() => handleSort("score")}
+                    className="font-medium flex items-center justify-end p-0 h-auto ml-auto text-white hover:text-sc-light hover:bg-transparent"
+                  >
+                    Score
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </TableHead>
+                <TableHead className="text-right text-white font-medium">Action</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-    </div>
+            </TableHeader>
+            <TableBody>
+              {teams.map((team, index) => (
+                <TableRow
+                  key={`table-${team.table}`}
+                  className={
+                    team.rank <= 3
+                      ? "bg-sc-light/50 dark:bg-sc-primary/20 hover:bg-sc-light dark:hover:bg-sc-primary/30"
+                      : index % 2 === 1
+                        ? "bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800/70"
+                        : "hover:bg-gray-50 dark:hover:bg-gray-800/30"
+                  }
+                >
+                  <TableCell className="font-medium flex items-center">
+                    {team.rank <= 3 && <Trophy className={`mr-2 h-5 w-5 ${getTrophyColor(team.rank)}`} />}
+                    {team.rank}
+                  </TableCell>
+                  <TableCell className="font-medium">Table {team.table}</TableCell>
+                  <TableCell className="text-right">{team.score} cards</TableCell>
+                  <TableCell className="text-right">
+                    {team.rank <= 3 && (
+                      <Button
+                        variant="default"
+                        size="sm"
+                        className="sc-button-primary"
+                        onClick={() => handleClaimAward(team)}
+                      >
+                        <Award className="mr-1 h-4 w-4" />
+                        Claim Award
+                      </Button>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
+    </Card>
   )
 }

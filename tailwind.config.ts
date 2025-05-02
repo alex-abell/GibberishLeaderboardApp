@@ -53,9 +53,14 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        ornl: {
-          blue: "#00458b",
-          gold: "#d4af37",
+        // Solution Center color palette
+        sc: {
+          primary: "#00481F", // dark green for header background
+          secondary: "#008037", // brighter green for buttons and accents
+          hover: "#006423", // darker green for hover states
+          light: "#E6F4EA", // very light green for banners and backgrounds
+          white: "#FFFFFF", // for cards and content areas
+          text: "#333333", // dark gray for regular text
         },
       },
       borderRadius: {
@@ -72,10 +77,22 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
+      boxShadow: {
+        card: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        "card-hover": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      },
+      backgroundImage: {
+        "hero-gradient": "linear-gradient(to bottom, #E6F4EA, #FFFFFF)",
       },
     },
   },

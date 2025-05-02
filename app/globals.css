@@ -5,57 +5,57 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 20%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 217 100% 27%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 100% 27%;
+    --popover-foreground: 0 0% 20%;
+    --primary: 142 100% 25%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 142 100% 25%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 120 16% 93%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 120 16% 93%;
+    --accent-foreground: 142 100% 25%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 142 100% 25%;
     --radius: 0.5rem;
-    --chart-1: 217 100% 27%;
+    --chart-1: 142 100% 25%;
     --chart-2: 45 80% 52%;
-    --chart-3: 0 84.2% 60.2%;
-    --chart-4: 262.1 83.3% 57.8%;
-    --chart-5: 24.6 95% 53.1%;
+    --chart-3: 0 84% 60%;
+    --chart-4: 262 83% 58%;
+    --chart-5: 25 95% 53%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 100% 27%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 45 80% 52%;
-    --chart-1: 45 80% 52%;
-    --chart-2: 217 100% 27%;
-    --chart-3: 0 84.2% 60.2%;
-    --chart-4: 262.1 83.3% 57.8%;
-    --chart-5: 24.6 95% 53.1%;
+    --background: 0 0% 10%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 15%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 142 70% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 142 70% 35%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 142 70% 35%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 142 70% 35%;
+    --chart-1: 142 70% 35%;
+    --chart-2: 45 80% 52%;
+    --chart-3: 0 84% 60%;
+    --chart-4: 262 83% 58%;
+    --chart-5: 25 95% 53%;
   }
 }
 
@@ -65,6 +65,118 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-sc-text dark:text-white;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+  h6 {
+    @apply text-base md:text-lg;
+  }
+  p {
+    @apply leading-7 text-sc-text dark:text-gray-200;
+  }
+}
+
+@layer components {
+  .sc-container {
+    @apply container mx-auto px-4 md:px-6 max-w-5xl;
+  }
+  .sc-header {
+    @apply bg-sc-primary text-white py-4 sticky top-0 z-50 shadow-md;
+  }
+  .sc-card {
+    @apply bg-sc-white dark:bg-gray-800 rounded-lg shadow-card;
+  }
+  .sc-button-primary {
+    @apply bg-sc-secondary hover:bg-sc-hover text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200;
+  }
+  .sc-button-secondary {
+    @apply bg-transparent text-sc-secondary hover:bg-sc-light dark:hover:bg-sc-primary/20 font-semibold rounded-md px-4 py-2 transition-colors duration-200;
+  }
+  .sc-button-icon {
+    @apply flex items-center gap-2 font-semibold;
+  }
+  .sc-alert {
+    @apply bg-sc-light dark:bg-sc-primary/20 border-l-4 border-sc-secondary p-4 rounded-r-md;
+  }
+  .sc-table-header {
+    @apply bg-sc-primary text-white;
+  }
+  .sc-table-row-alt {
+    @apply bg-sc-light/50 dark:bg-sc-primary/10;
+  }
+  .sc-trophy-gold {
+    @apply text-amber-500;
+  }
+  .sc-trophy-silver {
+    @apply text-gray-400;
+  }
+  .sc-trophy-bronze {
+    @apply text-amber-700;
+  }
+  .sc-dropdown {
+    @apply bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700;
+  }
+  .sc-dropdown-item {
+    @apply px-4 py-2 hover:bg-sc-light dark:hover:bg-sc-primary/20 cursor-pointer;
+  }
+  .sc-search {
+    @apply bg-white dark:bg-gray-800 rounded-full border border-gray-300 dark:border-gray-600 focus-within:border-sc-secondary focus-within:ring-1 focus-within:ring-sc-secondary transition-colors duration-200;
+  }
+
+  /* Footer badges styling - reduced padding */
+  .footer-badges {
+    @apply flex items-center justify-center flex-wrap gap-3 pt-1;
+  }
+
+  .footer-badges a {
+    @apply inline-block transition-transform hover:scale-105;
+  }
+
+  .footer-badges a img {
+    @apply h-5 w-auto;
+  }
+
+  /* Dark mode improvements for better contrast */
+  .dark .text-gray-600 {
+    @apply text-gray-300;
+  }
+
+  .dark .border-gray-200 {
+    @apply border-gray-600;
+  }
+
+  .dark .text-sc-primary {
+    @apply text-sc-light;
+  }
+
+  .dark .sc-button-primary {
+    @apply bg-sc-secondary hover:bg-sc-hover text-white;
+  }
+
+  /* Certificate specific styles that should not change in dark mode */
+  .certificate-container {
+    @apply bg-white rounded-lg;
   }
 }
 
@@ -82,8 +194,50 @@
     top: 0;
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .certificate {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* Dropdown animation */
+.dropdown-caret {
+  @apply transition-transform duration-200;
+}
+.dropdown-open .dropdown-caret {
+  @apply rotate-180;
+}
+
+/* Typewriter effect */
+.typewriter {
+  @apply relative;
+}
+.typewriter::after {
+  content: "|";
+  @apply animate-caret-blink;
+}
+
+/* Enhanced certificate name styling */
+.certificate p {
+  text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.9), 0px 0px 6px rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+/* Print optimization for certificate */
+@media print {
+  .certificate p {
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
